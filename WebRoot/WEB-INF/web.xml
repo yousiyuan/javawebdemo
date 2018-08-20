@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<welcome-file-list>
+		<welcome-file>/main.html</welcome-file>
+	</welcome-file-list>
+
+
+	<!-- 配置Servlet对象 -->
+	<servlet>
+		<servlet-name>DeleteServlet</servlet-name>
+		<servlet-class>com.ces.controller.DeleteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DeleteServlet</servlet-name>
+		<url-pattern>/servlet/DeleteServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>InsertServlet</servlet-name>
+		<servlet-class>com.ces.controller.InsertServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InsertServlet</servlet-name>
+		<url-pattern>/servlet/InsertServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>QueryServlet</servlet-name>
+		<servlet-class>com.ces.controller.QueryServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>QueryServlet</servlet-name>
+		<url-pattern>/servlet/QueryServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>UpdateServlet</servlet-name>
+		<servlet-class>com.ces.controller.UpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateServlet</servlet-name>
+		<url-pattern>/servlet/UpdateServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>com.ces.controller.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/servlet/LoginServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>LogoutServlet</servlet-name>
+		<servlet-class>com.ces.controller.LogoutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogoutServlet</servlet-name>
+		<url-pattern>/servlet/LogoutServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 配置编码过滤器：设置全局编码 -->
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>com.ces.filter.EncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoder</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- 配置登录过滤器：Session失效跳转到登录页 -->
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>com.ces.filter.LoginFilter</filter-class>
+		<init-param>
+			<param-name>IgnorePage</param-name>
+			<param-value>login.jsp|/servlet/LoginServlet|.gif|.png|.jpg|.bpm|.jpeg</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- 配置ServletContext监听器：任务调度 -->
+	<listener>
+		<listener-class>com.zxb.listener.GlobalListener</listener-class>
+	</listener>
+
+</web-app>
